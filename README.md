@@ -53,7 +53,7 @@ For the frontend, I worked with React and JavaScript to build a simple, user-fri
 
 My main focus was integrating the frontend with the backend through REST APIs, understanding how authentication works across both applications, and ensuring secure communication between them.
 
-Testing
+### Testing
 
 To improve the reliability and quality of the application, I applied different levels of software testing:
 
