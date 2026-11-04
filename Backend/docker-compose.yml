@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: qa_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+
+    ports:
+      - "3308:3306"
+    volumes:
+      - qa_db_data:/var/lib/mysql
+    networks:
+      - qa_network
+  app:
+    build: .
+    container_name: qa_backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:mysql://db:3306/${DB_NAME}
+      DB_USERNAME: root
+      DB_PASS: ${DB_ROOT_PASS}
+      APP_JWT_SECRET: ${APP_JWT_SECRET}
+    ports:
+      - "8080:8080"
+    networks:
+      - qa_network
+volumes:
+  qa_db_data:
+
+networks:
+  qa_network:
+    name: qa_network
+    driver: bridge

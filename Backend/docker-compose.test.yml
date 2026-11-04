@@ -1,0 +1,31 @@
+services:
+  db-test:
+    image: mysql:8.0
+    container_name: qa_db_test
+    environment:
+      MYSQL_DATABASE: qa_test
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - qa_test_data:/var/lib/mysql
+    networks:
+      - qa_test_network
+
+  backend-test:
+    image: ghcr.io/haneennajjar/qa-backend:latest
+    container_name: qa_backend_test
+    restart: always
+    depends_on:
+      - db-test
+    environment:
+      SPRING_PROFILES_ACTIVE: e2e
+    ports:
+      - "8180:8080"
+    networks:
+      - qa_test_network
+
+volumes:
+  qa_test_data:
+
+networks:
+  qa_test_network:
+    driver: bridge

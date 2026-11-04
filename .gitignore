@@ -1,0 +1,17 @@
+# Sensitive files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Backend
+**/.gradle/
+**/build/
+**/.idea/
+**/*.iml
+
+# Frontend
+**/node_modules/
+**/dist/
+
+# Other
+**/.DS_Store

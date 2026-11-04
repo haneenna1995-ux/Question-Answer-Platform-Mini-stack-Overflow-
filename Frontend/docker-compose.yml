@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: .
+    container_name: qa_frontend
+    restart: always
+    ports:
+      - "4173:4173"
+    networks:
+      - qa_network
+
+networks:
+  qa_network:
+    name: qa_network
+    external: true

@@ -1,0 +1,48 @@
+stages:
+  - build
+  - test
+  - quality
+  - publish
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - ./gradlew bootJar
+  artifacts:
+    paths:
+      - build/libs/*.jar
+
+test-job:
+  stage: test
+  variables:
+    SPRING_PROFILES_ACTIVE: test
+  script:
+    - ./gradlew test jacocoTestReport
+  artifacts:
+    paths:
+      - build/
+
+sonarqube-job:
+  stage: quality
+  dependencies:
+    - test-job
+  script:
+    - ./gradlew sonarqube
+
+publish-job:
+  stage: publish
+  script:
+    - docker login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+    - docker build -t ghcr.io/haneennajjar/qa-backend:latest .
+    - docker push ghcr.io/haneennajjar/qa-backend:latest
+
+deploy:
+  stage: deploy
+  dependencies:
+    - build-job
+  script:
+    - docker compose -p qa-backend down --remove-orphans
+    - docker compose -p qa-backend build
+    - docker compose -p qa-backend up -d
+
