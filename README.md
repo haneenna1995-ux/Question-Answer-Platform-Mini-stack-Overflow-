@@ -53,14 +53,36 @@ For the frontend, I worked with React and JavaScript to build a simple, user-fri
 
 My main focus was integrating the frontend with the backend through REST APIs, understanding how authentication works across both applications, and ensuring secure communication between them.
 
-## What I Learned
+Testing
+
+To improve the reliability and quality of the application, I applied different levels of software testing:
+
+Unit Testing: Tested individual components and methods to verify that the application logic works as expected.
+
+Integration Testing: Tested the interaction between different parts of the backend to ensure that components work correctly together.
+
+End-to-End (E2E) Testing: Tested complete user workflows to verify that the application functions correctly from the user's perspective.
+
+These tests helped me understand the importance of validating functionality at different levels and identifying issues during development.
+
+What I Learned
 
 Through this project, I developed practical experience in:
 
-- Building full-stack applications using Java, Spring Boot, and React.
-- Structuring backend code using clean architecture principles.
-- Implementing authentication and password security.
-- Working with relational databases using MySQL.
-- Connecting frontend applications to backend REST APIs.
-- Using Docker for containerization and deployment.
-- Understanding how security, backend logic, and frontend functionality work together in a complete application.
+Building full-stack applications using Java, Spring Boot, and React.
+
+Structuring backend code using Clean Architecture and separation-of-concerns principles.
+
+Implementing authentication and password security using Spring Security.
+
+Working with relational databases using MySQL.
+
+Connecting frontend applications to backend REST APIs.
+
+Using Docker for containerization and deployment.
+
+Applying unit, integration, and end-to-end testing to verify application functionality and reliability.
+
+Using Git and GitLab for version control.
+
+Understanding how security, backend logic, frontend functionality, and testing work together in a complete application.
